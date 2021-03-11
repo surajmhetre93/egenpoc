@@ -1,26 +1,10 @@
-from django.shortcuts import render, get_object_or_404
-from django.http import JsonResponse, HttpResponse
-from rest_framework.views import APIView
-from rest_framework.response import Response
-import subprocess
-import requests
 import argparse
 import os
 import time
+
 import googleapiclient.discovery
 from six.moves import input
 
-credential_path = "/Users/chinmay.parkar/Desktop/POC/egenpoc/pocapp/cparkar-project-9b086c6417c8.json"
-os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = credential_path
-
-class APIConfig(APIView):
-    def post(self, request):
-        task = request.data
-        project=task['project_id']
-        zone=task['zone']
-        name=task['name']
-        main(project,zone,name)
-        return HttpResponse('<h1>Page was found</h1>')
 
 # [START list_instances]
 def list_instances(compute, project, zone):
@@ -28,6 +12,8 @@ def list_instances(compute, project, zone):
     return result['items'] if 'items' in result else None
 # [END list_instances]
 
+
+# [START create_instance]
 def create_instance(compute, project, zone, name):
     # Get the latest Debian Jessie image.
     image_response = compute.images().getFromFamily(
@@ -36,6 +22,11 @@ def create_instance(compute, project, zone, name):
 
     # Configure the machine
     machine_type = "zones/%s/machineTypes/n1-standard-1" % zone
+    # startup_script = open(
+    #     os.path.join(
+    #         os.path.dirname(__file__), 'startup-script.sh'), 'r').read()
+    # image_url = "http://storage.googleapis.com/gce-demo-input/photo.jpg"
+    # image_caption = "Ready for dessert?"
 
     config = {
         'name': name,
@@ -61,19 +52,51 @@ def create_instance(compute, project, zone, name):
             ]
         }],
 
-    }
+        # Allow the instance to access cloud storage and logging.
+        # 'serviceAccounts': [{
+        #     'email': 'default',
+        #     'scopes': [
+        #         'https://www.googleapis.com/auth/devstorage.read_write',
+        #         'https://www.googleapis.com/auth/logging.write'
+        #     ]
+        # }],
+
+        # Metadata is readable from the instance and allows you to
+        # pass configuration from deployment scripts to instances.
+    #     'metadata': {
+    #         'items': [{
+    #             # Startup script is automatically executed by the
+    #             # instance upon startup.
+    #             'key': 'startup-script',
+    #             'value': startup_script
+    #         }, {
+    #             'key': 'url',
+    #             'value': image_url
+    #         }, {
+    #             'key': 'text',
+    #             'value': image_caption
+    #         }, {
+    #             'key': 'bucket',
+    #             'value': bucket
+    #         }]
+    #     }
+     }
 
     return compute.instances().insert(
         project=project,
         zone=zone,
         body=config).execute()
-# [END create_instance
+# [END create_instance]
 
+
+# [START delete_instance]
 def delete_instance(compute, project, zone, name):
     return compute.instances().delete(
         project=project,
         zone=zone,
         instance=name).execute()
+# [END delete_instance]
+
 
 # [START wait_for_operation]
 def wait_for_operation(compute, project, zone, operation):
@@ -93,6 +116,8 @@ def wait_for_operation(compute, project, zone, operation):
         time.sleep(1)
 # [END wait_for_operation]
 
+
+# [START run]
 def main(project, zone, instance_name, wait=True):
     compute = googleapiclient.discovery.build('compute', 'v1')
 
@@ -106,6 +131,14 @@ def main(project, zone, instance_name, wait=True):
     print('Instances in project %s and zone %s:' % (project, zone))
     for instance in instances:
         print(' - ' + instance['name'])
+
+#     print("""
+# Instance created.
+# It will take a minute or two for the instance to complete work.
+# Check this URL: http://storage.googleapis.com/{}/output.png
+# Once the image is uploaded press enter to delete the instance.
+# """.format(bucket))
+
     if wait:
         input()
 
@@ -114,3 +147,21 @@ def main(project, zone, instance_name, wait=True):
     operation = delete_instance(compute, project, zone, instance_name)
     wait_for_operation(compute, project, zone, operation['name'])
 
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument('project_id', help='Your Google Cloud project ID.')
+    # parser.add_argument(
+    #     'bucket_name', help='Your Google Cloud Storage bucket name.')
+    parser.add_argument(
+        '--zone',
+        default='us-central1-f',
+        help='Compute Engine zone to deploy to.')
+    parser.add_argument(
+        '--name', default='demo-instance', help='New instance name.')
+
+    args = parser.parse_args()
+
+    main(args.project_id, args.zone, args.name)

@@ -1,6 +1,7 @@
-from django.urls import path, include
-from pocapp import views
+from django.urls import path
+from .views import APIConfig
+
 
 urlpatterns = [
-    path('', views.home, name = "home"),
+    path('APIConfig/', APIConfig.as_view()),
 ]

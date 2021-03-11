@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "cparkar-project",
+  "private_key_id": "9b086c6417c87e3f6f44bd2773041650fb56480e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC3fbuN2ZlVRC2a\n6uRtZzC2uimb3GmYiyGpmoMXjm8FKRFzlcZ9lgVfeJwZcW1a/3EPhFzSiaAMV1PI\n1HaynraAtb5d2For2kb21jqZiEam22vBmHPFDWPWZUMVME04Cu/4gyERHTN19ewS\nW90gzyP+CmAVpqXTc5EdjQAGzm+5SrUY3qWeRbEp8O9WgCkDH2bc41pPXjsntwga\nVbvyE2hvxyPkr+3vvVeRg1WNh3abvXfDnZfDaLnEN5MTLRIZtWi1lcXZJCYk6g4k\nETIJg8yPckPurikwveXrZwS7S/dupF/XxxOLXtqSHOVntiPTRU14icLKsFgJUee3\ntPx7M5M/AgMBAAECggEAMzLflux9Btgvu3bIRyiQZKQcQROm2TwVJ/xnkLabDr8P\nUgecK2WlWSbPs5+9KjN1aiV+OvbQ1DC3vaVe+2ciuFY96HSacHsG6xAKqNVoFV3L\nOukdgIHEdkmqBqsEGNugauC35M0Xk1YLyXGdiW6S9esSNWhbA93Ow4aY181ZSkNu\nZuH3Shz0JHyRwT3qZboxvbnq48jSyvo7zkyC+ODEy/i1oGV+wlLbhaLElLxxpMUy\nGDJCZe4kU2YlFUdYUn99MKIMJl1jbtMKNIeTKNCTkZ0PwRCCqzhibFQQqehJh1gV\n4LrHHoE9m8uE7UjYvx+C9Ztk6nwaodslbdaxTCaCMQKBgQD7uPdFi7hpieRmTgN1\nPXpXrzzG6iOeDRc34FlVL9F5yWp/x7fVy+pYQwjBqicm3MtJ7KM1gNYpjvU3/F3+\nnK8oIN/uy32ubyJ/YB5DF+t31KPA4iwDF6BYpLUJKnIerTwpDpBNFSm3baTapWLP\nP0we9y9Hjf9b5kkPArG5PHZakQKBgQC6m/L24T/lABFgLbWJsBdmWotmvAlHWn05\nUc0teY4oEKUtdbPdtYAUvV75jwsiRA32d3ZTgITwNVYsFlHmKuK2UGr9AcVv5wXV\nZf69PYukZABoWamRX0z5CmEGNnbrvKG2o1m0sxX+eHTeOQXHwGICDGzuqe90oVcZ\nYm+C2LbYzwKBgBGqFjgcKPHHCm8fdGCq0sYKdxJiZeN2ebWjGcG/nEyWlNGouz7W\nk3hkI94rSZoRjnZ+k6lyhBTgglbOb+4pIqWHQQ+p2gT+qYYUwarlp9F964vik0IY\nS1lNHaMqBl4evAUJj5jJLmc/23y4dGmkwHu/zuKPlWbmjyPthXlBQ/DxAoGBAKRh\n6fZmWAWfOK8ztL40e3hzfGckbzwGz1al44sSkBJlD0xraeV9E/WxF6/YvSMTNgWO\nGJLYHMMJCP7PLpgF4S5eytBTNhwsMyxXq74CMDfAy8cgbModXE3pQazaX4mr4fxk\nCwqt00sVy0VSj+/1XaCWV4Mp+UEROwumdbqasv9rAoGBAPkpZ3B4HYPdYJPYZjEm\nTGJTdJi89EEUJ86C2sMUB/0BQxESdkfCvlYBwI94GZID8A0oJj19SklmLHq9Isc/\nLjRajIsQcOymx4DQZ9XnaCS3wHE6hKOmUwKdv5EU4pbVZqaa3OoPSYOSwVNRCCcF\ntyFBIiGwcCqtIDOHtntxmqmN\n-----END PRIVATE KEY-----\n",
+  "client_email": "py-app@cparkar-project.iam.gserviceaccount.com",
+  "client_id": "109461860396210396567",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/py-app%40cparkar-project.iam.gserviceaccount.com"
+}
